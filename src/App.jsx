@@ -1,5 +1,6 @@
 import "./App.css";
 import { Box, Typography } from "@mui/material";
+import Sidebar from "./components/Sidebar/Sidebar";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       }}
     >
       <Typography>BOT AI</Typography>
+      <Sidebar />
     </Box>
   );
 }
