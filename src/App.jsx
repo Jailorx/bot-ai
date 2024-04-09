@@ -1,6 +1,7 @@
 import "./App.css";
-import { Box, Typography } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import Sidebar from "./components/Sidebar/Sidebar";
+import Chat from "./components/Chat/Chat";
 
 function App() {
   return (
@@ -13,7 +14,10 @@ function App() {
       )`,
       }}
     >
-      <Sidebar />
+      <Stack spacing={2} direction="row">
+        <Sidebar />
+        <Chat />
+      </Stack>
     </Box>
   );
 }
