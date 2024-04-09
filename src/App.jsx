@@ -13,7 +13,6 @@ function App() {
       )`,
       }}
     >
-      <Typography>BOT AI</Typography>
       <Sidebar />
     </Box>
   );
