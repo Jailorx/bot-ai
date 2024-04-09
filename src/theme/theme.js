@@ -10,4 +10,7 @@ export const appTheme = createTheme({
       main: "#D7C7F4",
     },
   },
+  typography: {
+    fontFamily: ["Ubuntu", "Open sans", "sans-serif"].join(","),
+  },
 });
