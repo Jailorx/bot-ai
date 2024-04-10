@@ -110,7 +110,7 @@ const Chat = () => {
         <MessageField type="user" />
         <MessageField type="bot" />
       </Stack>
-      <Stack
+      {/* <Stack
         direction="row"
         spacing={2}
         alignItems="center"
@@ -148,7 +148,7 @@ const Chat = () => {
             Save
           </Button>
         </Stack>
-      </Stack>
+      </Stack> */}
     </Box>
   );
 };
