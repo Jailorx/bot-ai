@@ -1,11 +1,13 @@
-import { Grid, Typography } from "@mui/material";
+import { Grid, Typography, Rating } from "@mui/material";
 import UserProfile from "../../assets/images/user-image.png";
 import AIProfile from "../../assets/images/bot-ai-image-profile.png";
 import Avatar from "@mui/material/Avatar";
 import ThumbUpOffAltOutlinedIcon from "@mui/icons-material/ThumbUpOffAltOutlined";
 import ThumbDownOffAltOutlinedIcon from "@mui/icons-material/ThumbDownOffAltOutlined";
+import { useState } from "react";
 
 const MessageField = ({ type, message }) => {
+  const [showRating, setShowRating] = useState(false);
   return (
     <Grid
       container
@@ -51,6 +53,7 @@ const MessageField = ({ type, message }) => {
               <Grid item>
                 <ThumbUpOffAltOutlinedIcon
                   style={{ color: "rgba(0, 0, 0, 0.4)" }}
+                  onClick={() => setShowRating(true)}
                 />
               </Grid>
               <Grid item>
@@ -61,6 +64,7 @@ const MessageField = ({ type, message }) => {
             </Grid>
           )}
         </Grid>
+        {showRating && <Rating />}
       </Grid>
     </Grid>
   );
