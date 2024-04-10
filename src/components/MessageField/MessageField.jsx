@@ -8,6 +8,7 @@ import { useState } from "react";
 
 const MessageField = ({ type, message }) => {
   const [showRating, setShowRating] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
   return (
     <Grid
       container
@@ -26,6 +27,8 @@ const MessageField = ({ type, message }) => {
         p: 2,
         mb: 1,
       }}
+      onMouseEnter={() => setIsHovering(true)}
+      onMouseLeave={() => setIsHovering(false)}
     >
       <Grid item>
         <Avatar
@@ -52,13 +55,21 @@ const MessageField = ({ type, message }) => {
               </Grid>
               <Grid item>
                 <ThumbUpOffAltOutlinedIcon
-                  style={{ color: "rgba(0, 0, 0, 0.4)" }}
+                  style={{
+                    color: "rgba(0, 0, 0, 0.4)",
+                    opacity: isHovering ? 1 : 0,
+                    transition: "opacity 0.3s",
+                  }}
                   onClick={() => setShowRating(true)}
                 />
               </Grid>
               <Grid item>
                 <ThumbDownOffAltOutlinedIcon
-                  style={{ color: "rgba(0, 0, 0, 0.4)" }}
+                  style={{
+                    color: "rgba(0, 0, 0, 0.4)",
+                    opacity: isHovering ? 1 : 0,
+                    transition: "opacity 0.3s",
+                  }}
                 />
               </Grid>
             </Grid>
