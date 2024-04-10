@@ -16,9 +16,9 @@ function App() {
       }}
     >
       <Stack spacing={2} direction="row">
-        {/* <Sidebar />
-        <Chat /> */}
-        <Feedback />
+        <Sidebar />
+        <Chat />
+        {/* <Feedback /> */}
       </Stack>
     </Box>
   );

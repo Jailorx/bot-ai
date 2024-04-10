@@ -1,6 +1,7 @@
 import { Box, Stack, Typography, TextField, Button, Grid } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import BotAiImage from "../../assets/images/bot-ai-image-profile.png";
+import MessageField from "../MessageField/MessageField";
 
 const Chat = () => {
   return (
@@ -37,7 +38,7 @@ const Chat = () => {
         <Avatar src={BotAiImage} sx={{ width: "66px", height: "69px" }} />
       </Stack>
 
-      <Grid
+      {/* <Grid
         container
         sx={{ rowGap: 2, columnGap: 1 }}
         my={5}
@@ -104,14 +105,22 @@ const Chat = () => {
             </Typography>
           </Stack>
         </Grid>
-      </Grid>
-      <Stack direction="row" spacing={2} alignItems="center">
+      </Grid> */}
+      <Stack spacing={1}>
+        <MessageField type="user" />
+        <MessageField type="bot" />
+      </Stack>
+      <Stack
+        direction="row"
+        spacing={2}
+        alignItems="center"
+        sx={{ marginTop: "10px" }}
+      >
         <TextField
           type="text"
           multiline
           placeholder="Message BOTAI"
           sx={{
-            // width: { md: "70vw", xl: "80vw" },
             width: "70vw",
             border: "1px solid #00000073",
             borderRadius: "5px",
