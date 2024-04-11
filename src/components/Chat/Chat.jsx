@@ -2,8 +2,19 @@ import { Box, Stack, Typography, TextField, Button, Grid } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import BotAiImage from "../../assets/images/bot-ai-image-profile.png";
 import MessageField from "../MessageField/MessageField";
+import { useState } from "react";
 
 const Chat = () => {
+  const api_key = import.meta.env.VITE_AI_API_KEY;
+  const [message, setMessage] = useState("");
+  const [allMessages, setAllMessages] = useState([]);
+
+  const handleUserMessage = (event) => {
+    const msg = event.target.value;
+    setMessage(msg);
+  };
+
+  const sendMessage = async () => {};
   return (
     <Box
       sx={{
@@ -38,7 +49,7 @@ const Chat = () => {
         <Avatar src={BotAiImage} sx={{ width: "66px", height: "69px" }} />
       </Stack>
 
-      {/* <Grid
+      <Grid
         container
         sx={{ rowGap: 2, columnGap: 1 }}
         my={5}
@@ -105,12 +116,12 @@ const Chat = () => {
             </Typography>
           </Stack>
         </Grid>
-      </Grid> */}
-      <Stack spacing={1}>
+      </Grid>
+      {/* <Stack spacing={1}>
         <MessageField type="user" />
         <MessageField type="bot" />
-      </Stack>
-      {/* <Stack
+      </Stack> */}
+      <Stack
         direction="row"
         spacing={2}
         alignItems="center"
@@ -125,6 +136,8 @@ const Chat = () => {
             border: "1px solid #00000073",
             borderRadius: "5px",
           }}
+          value={message}
+          onChange={handleUserMessage}
         />
         <Stack direction="row" spacing={1} alignItems="end">
           <Button
@@ -134,6 +147,7 @@ const Chat = () => {
               minWidth: "74px",
               height: "50px",
             }}
+            onClick={sendMessage}
           >
             Ask
           </Button>
@@ -148,7 +162,7 @@ const Chat = () => {
             Save
           </Button>
         </Stack>
-      </Stack> */}
+      </Stack>
     </Box>
   );
 };
