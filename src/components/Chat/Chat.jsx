@@ -4,8 +4,15 @@ import BotAiImage from "../../assets/images/bot-ai-image-profile.png";
 import MessageField from "../MessageField/MessageField";
 import { useState } from "react";
 
+import { GoogleGenerativeAI } from "@google/generative-ai";
+
+const API_KEY = import.meta.env.VITE_AI_API_KEY;
+const genAI = new GoogleGenerativeAI(API_KEY);
+// const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+
 const Chat = () => {
-  const api_key = import.meta.env.VITE_AI_API_KEY;
+  const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+
   const [message, setMessage] = useState("");
   const [allMessages, setAllMessages] = useState([]);
 
@@ -14,7 +21,40 @@ const Chat = () => {
     setMessage(msg);
   };
 
-  const sendMessage = async () => {};
+  //   const sendMessage = async () => {
+  //     console.log({ type: "user", content: message });
+  //     const sendMessage = async () => {
+  //   // Add user message to allMessages state
+  //   setAllMessages(prevMessages => [...prevMessages, { type: "user", content: message }]);
+  //   // Generate response from the Gemini API
+  //   const result = await model.generateContent(message);
+  //   const response = await result.response.text();
+  //   // Add bot response to allMessages state
+  //   setAllMessages(prevMessages => [...prevMessages, { type: "bot", content: response }]);
+  //   // Clear the input field
+  //   setMessage("");
+  // };
+
+  const sendMessage = async () => {
+    // Add user message to allMessages state
+    setAllMessages((prevMessages) => [
+      ...prevMessages,
+      { type: "user", content: message },
+    ]);
+    console.log("user:", allMessages);
+
+    const result = await model.generateContent(message);
+    const response = await result.response.text();
+
+    setAllMessages((prevMessages) => [
+      ...prevMessages,
+      { type: "bot", content: response },
+    ]);
+    console.log("bot:", allMessages);
+
+    setMessage("");
+  };
+
   return (
     <Box
       sx={{
