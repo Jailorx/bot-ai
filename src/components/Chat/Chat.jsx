@@ -2,7 +2,7 @@ import { Box, Stack, Typography, TextField, Button, Grid } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import BotAiImage from "../../assets/images/bot-ai-image-profile.png";
 import MessageField from "../MessageField/MessageField";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
@@ -49,6 +49,15 @@ const Chat = () => {
 
     console.log(allMessages);
   };
+
+  const handleKeyPress = useCallback(
+    (event) => {
+      if (event.key === "Enter") {
+        sendMessage();
+      }
+    },
+    [sendMessage]
+  );
 
   return (
     <Box
@@ -185,6 +194,7 @@ const Chat = () => {
           }}
           value={message}
           onChange={handleUserMessage}
+          onKeyPress={handleKeyPress}
         />
         <Stack direction="row" spacing={1} alignItems="end">
           <Button
