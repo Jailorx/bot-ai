@@ -177,49 +177,58 @@ const Chat = () => {
           </Grid>
         </>
       )}
-      <Stack
+      <Grid
+        container
         direction="row"
-        spacing={2}
+        spacing={1}
         alignItems="center"
         sx={{ marginTop: "10px" }}
       >
-        <TextField
-          type="text"
-          multiline
-          placeholder="Message BOT AI"
-          sx={{
-            width: "70vw",
-            border: "1px solid #00000073",
-            borderRadius: "5px",
-          }}
-          value={message}
-          onChange={handleUserMessage}
-          onKeyPress={handleKeyPress}
-        />
-        <Stack direction="row" spacing={1} alignItems="end">
-          <Button
+        <Grid item sx={{ marginTop: "10px", marginRight: "1" }}>
+          <TextField
+            type="text"
+            multiline
+            placeholder="Message BOT AI"
             sx={{
-              backgroundColor: "secondary.main",
-              color: "#000",
-              minWidth: "74px",
-              height: "50px",
+              width: "50vw",
+              border: "1px solid #00000073",
+              borderRadius: "5px",
             }}
-            onClick={sendMessage}
-          >
-            Ask
-          </Button>
-          <Button
-            sx={{
-              backgroundColor: "secondary.main",
-              color: "#000",
-              minWidth: "74px",
-              height: "50px",
-            }}
-          >
-            Save
-          </Button>
-        </Stack>
-      </Stack>
+            value={message}
+            onChange={handleUserMessage}
+            onKeyPress={handleKeyPress}
+          />
+        </Grid>
+        <Grid item xs={12} sm={4}>
+          <Grid container justifyContent="flex-end" spacing={1}>
+            <Grid item>
+              <Button
+                sx={{
+                  backgroundColor: "secondary.main",
+                  color: "#000",
+                  minWidth: "74px",
+                  height: "50px",
+                }}
+                onClick={sendMessage}
+              >
+                Ask
+              </Button>
+            </Grid>
+            <Grid item>
+              <Button
+                sx={{
+                  backgroundColor: "secondary.main",
+                  color: "#000",
+                  minWidth: "74px",
+                  height: "50px",
+                }}
+              >
+                Save
+              </Button>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
     </Box>
   );
 };
