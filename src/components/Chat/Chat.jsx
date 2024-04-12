@@ -5,6 +5,7 @@ import MessageField from "../MessageField/MessageField";
 import { useState, useEffect, useRef, useCallback } from "react";
 
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import Feedback from "../Feedback/Feedback";
 
 const API_KEY = import.meta.env.VITE_AI_API_KEY;
 const genAI = new GoogleGenerativeAI(API_KEY);
@@ -23,7 +24,7 @@ const Chat = () => {
     setIsModalOpen(true);
   };
   const handleCloseModal = () => {
-    setIsModalOpen(true);
+    setIsModalOpen(false);
   };
 
   const scrollToBottom = () => {
@@ -91,13 +92,17 @@ const Chat = () => {
       {allMessages.length > 0 ? (
         <Stack spacing={1} sx={{ maxHeight: "80vh", overflowY: "scroll" }}>
           {allMessages.map((message, index) => (
-            <MessageField
-              key={index}
-              type={message.type}
-              message={message.content}
-              onModalOpen={handleOpenModal}
-              onModalClose={handleCloseModal}
-            />
+            <>
+              <MessageField
+                key={index}
+                type={message.type}
+                message={message.content}
+                onModalOpen={handleOpenModal}
+              />
+              {message.type === "bot" && (
+                <Feedback open={isModalOpen} onClose={handleCloseModal} />
+              )}
+            </>
           ))}
           <div ref={messagesEndRef} />
         </Stack>
