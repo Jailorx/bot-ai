@@ -32,6 +32,7 @@ const Chat = () => {
   };
 
   const sendMessage = async () => {
+    if (message.trim() === "") return;
     setAllMessages((prevMessages) => [
       ...prevMessages,
       { type: "user", content: message },
