@@ -41,7 +41,7 @@ const MessageField = ({ type, message }) => {
           <Typography variant="h6">
             {type === "user" ? "You" : "AIBOT"}
           </Typography>
-          <Typography variant="subtitle1">Hello</Typography>
+          <Typography variant="subtitle1">{message}</Typography>
           {type == "user" ? (
             <Typography variant="subtitle2" color="rgba(0, 0, 0, 0.62)">
               10:02 PM

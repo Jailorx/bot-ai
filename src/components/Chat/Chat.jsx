@@ -2,46 +2,41 @@ import { Box, Stack, Typography, TextField, Button, Grid } from "@mui/material";
 import Avatar from "@mui/material/Avatar";
 import BotAiImage from "../../assets/images/bot-ai-image-profile.png";
 import MessageField from "../MessageField/MessageField";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 const API_KEY = import.meta.env.VITE_AI_API_KEY;
 const genAI = new GoogleGenerativeAI(API_KEY);
-// const model = genAI.getGenerativeModel({ model: "gemini-pro" });
 
 const Chat = () => {
-  const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+  const model = genAI.getGenerativeModel({
+    model: import.meta.env.VITE_AI_MODEL,
+  });
 
   const [message, setMessage] = useState("");
   const [allMessages, setAllMessages] = useState([]);
+  const messagesEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [allMessages]);
 
   const handleUserMessage = (event) => {
     const msg = event.target.value;
     setMessage(msg);
   };
 
-  //   const sendMessage = async () => {
-  //     console.log({ type: "user", content: message });
-  //     const sendMessage = async () => {
-  //   // Add user message to allMessages state
-  //   setAllMessages(prevMessages => [...prevMessages, { type: "user", content: message }]);
-  //   // Generate response from the Gemini API
-  //   const result = await model.generateContent(message);
-  //   const response = await result.response.text();
-  //   // Add bot response to allMessages state
-  //   setAllMessages(prevMessages => [...prevMessages, { type: "bot", content: response }]);
-  //   // Clear the input field
-  //   setMessage("");
-  // };
-
   const sendMessage = async () => {
-    // Add user message to allMessages state
     setAllMessages((prevMessages) => [
       ...prevMessages,
       { type: "user", content: message },
     ]);
-    console.log("user:", allMessages);
+    setMessage("");
 
     const result = await model.generateContent(message);
     const response = await result.response.text();
@@ -50,9 +45,8 @@ const Chat = () => {
       ...prevMessages,
       { type: "bot", content: response },
     ]);
-    console.log("bot:", allMessages);
 
-    setMessage("");
+    console.log(allMessages);
   };
 
   return (
@@ -76,91 +70,103 @@ const Chat = () => {
       >
         Bot AI
       </Typography>
+      {allMessages.length > 0 ? (
+        <Stack spacing={1} sx={{ maxHeight: "80vh", overflowY: "scroll" }}>
+          {allMessages.map((message, index) => (
+            <MessageField
+              key={index}
+              type={message.type}
+              message={message.content}
+            />
+          ))}
+          <div ref={messagesEndRef} />
+        </Stack>
+      ) : (
+        <>
+          <Stack
+            spacing={1}
+            justifyContent="center"
+            alignItems="center"
+            sx={{ minWidth: "100%", marginBottom: "100px" }}
+          >
+            <Typography variant="h4" sx={{ fontWeight: "500" }}>
+              How Can I Help You Today?
+            </Typography>
+            <Avatar src={BotAiImage} sx={{ width: "66px", height: "69px" }} />
+          </Stack>
 
-      <Stack
-        spacing={1}
-        justifyContent="center"
-        alignItems="center"
-        sx={{ minWidth: "100%", marginBottom: "100px" }}
-      >
-        <Typography variant="h4" sx={{ fontWeight: "500" }}>
-          How Can I Help You Today?
-        </Typography>
-        <Avatar src={BotAiImage} sx={{ width: "66px", height: "69px" }} />
-      </Stack>
-
-      <Grid
-        container
-        sx={{ rowGap: 2, columnGap: 1 }}
-        my={5}
-        justifyContent="center"
-        alignItems="center"
-      >
-        <Grid
-          item
-          sm={12}
-          md={5.9}
-          p={2}
-          bgcolor="#fff"
-          sx={{ borderRadius: "5px" }}
-        >
-          <Stack spacing={1}>
-            <Typography variant="h6">Hi, how is the weather</Typography>
-            <Typography variant="subtitle1">
-              Get immediate AI generated response
-            </Typography>
-          </Stack>
-        </Grid>
-        <Grid
-          item
-          sm={12}
-          md={5.9}
-          p={2}
-          bgcolor="#fff"
-          sx={{ borderRadius: "5px" }}
-        >
-          <Stack spacing={1}>
-            <Typography variant="h6">Hi, what is my location</Typography>
-            <Typography variant="subtitle1">
-              Get immediate AI generated response
-            </Typography>
-          </Stack>
-        </Grid>
-        <Grid
-          item
-          sm={12}
-          md={5.9}
-          p={2}
-          bgcolor="#fff"
-          sx={{ borderRadius: "5px" }}
-        >
-          <Stack spacing={1}>
-            <Typography variant="h6">Hi, what is the temperature</Typography>
-            <Typography variant="subtitle1">
-              Get immediate AI generated response
-            </Typography>
-          </Stack>
-        </Grid>
-        <Grid
-          item
-          sm={12}
-          md={5.9}
-          p={2}
-          bgcolor="#fff"
-          sx={{ borderRadius: "5px" }}
-        >
-          <Stack spacing={1}>
-            <Typography variant="h6">Hi, how are you</Typography>
-            <Typography variant="subtitle1">
-              Get immediate AI generated response
-            </Typography>
-          </Stack>
-        </Grid>
-      </Grid>
-      {/* <Stack spacing={1}>
-        <MessageField type="user" />
-        <MessageField type="bot" />
-      </Stack> */}
+          <Grid
+            container
+            sx={{ rowGap: 2, columnGap: 1 }}
+            my={5}
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Grid
+              item
+              sm={12}
+              md={5.9}
+              p={2}
+              bgcolor="#fff"
+              sx={{ borderRadius: "5px" }}
+            >
+              <Stack spacing={1}>
+                <Typography variant="h6">Hi, how is the weather</Typography>
+                <Typography variant="subtitle1">
+                  Get immediate AI generated response
+                </Typography>
+              </Stack>
+            </Grid>
+            <Grid
+              item
+              sm={12}
+              md={5.9}
+              p={2}
+              bgcolor="#fff"
+              sx={{ borderRadius: "5px" }}
+            >
+              <Stack spacing={1}>
+                <Typography variant="h6">Hi, what is my location</Typography>
+                <Typography variant="subtitle1">
+                  Get immediate AI generated response
+                </Typography>
+              </Stack>
+            </Grid>
+            <Grid
+              item
+              sm={12}
+              md={5.9}
+              p={2}
+              bgcolor="#fff"
+              sx={{ borderRadius: "5px" }}
+            >
+              <Stack spacing={1}>
+                <Typography variant="h6">
+                  Hi, what is the temperature
+                </Typography>
+                <Typography variant="subtitle1">
+                  Get immediate AI generated response
+                </Typography>
+              </Stack>
+            </Grid>
+            <Grid
+              item
+              sm={12}
+              md={5.9}
+              p={2}
+              bgcolor="#fff"
+              sx={{ borderRadius: "5px" }}
+            >
+              <Stack spacing={1}>
+                <Typography variant="h6">Hi, how are you</Typography>
+                <Typography variant="subtitle1">
+                  Get immediate AI generated response
+                </Typography>
+              </Stack>
+            </Grid>
+          </Grid>
+        </>
+      )}
       <Stack
         direction="row"
         spacing={2}
@@ -170,7 +176,7 @@ const Chat = () => {
         <TextField
           type="text"
           multiline
-          placeholder="Message BOTAI"
+          placeholder="Message BOT AI"
           sx={{
             width: "70vw",
             border: "1px solid #00000073",
