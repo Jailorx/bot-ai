@@ -6,7 +6,7 @@ import ThumbUpOffAltOutlinedIcon from "@mui/icons-material/ThumbUpOffAltOutlined
 import ThumbDownOffAltOutlinedIcon from "@mui/icons-material/ThumbDownOffAltOutlined";
 import { useState } from "react";
 
-const MessageField = ({ type, message }) => {
+const MessageField = ({ type, message, onModalOpen, onModalClose }) => {
   const [showRating, setShowRating] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
   return (
@@ -70,6 +70,7 @@ const MessageField = ({ type, message }) => {
                     opacity: isHovering ? 1 : 0,
                     transition: "opacity 0.3s",
                   }}
+                  onClick={onModalOpen}
                 />
               </Grid>
             </Grid>

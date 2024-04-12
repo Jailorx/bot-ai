@@ -17,6 +17,14 @@ const Chat = () => {
   const [message, setMessage] = useState("");
   const [allMessages, setAllMessages] = useState([]);
   const messagesEndRef = useRef(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleCloseModal = () => {
+    setIsModalOpen(true);
+  };
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -87,6 +95,8 @@ const Chat = () => {
               key={index}
               type={message.type}
               message={message.content}
+              onModalOpen={handleOpenModal}
+              onModalClose={handleCloseModal}
             />
           ))}
           <div ref={messagesEndRef} />
