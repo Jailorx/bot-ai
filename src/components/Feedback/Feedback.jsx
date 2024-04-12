@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Stack,
@@ -11,6 +11,12 @@ import Avatar from "@mui/material/Avatar";
 import FeedbackImage from "../../assets/images/feedback-image.png";
 
 const Feedback = ({ open, onClose }) => {
+  const [feedback, setFeedback] = useState("");
+
+  const handleFeedbackForm = (event) => {
+    const msg = event.target.value;
+    setFeedback(msg);
+  };
   return (
     <Modal open={open} onClose={onClose}>
       <Box
@@ -56,7 +62,12 @@ const Feedback = ({ open, onClose }) => {
               X
             </Button>
           </Stack>
-          <TextField multiline minRows={5}></TextField>
+          <TextField
+            multiline
+            minRows={5}
+            value={feedback}
+            onChange={handleFeedbackForm}
+          ></TextField>
           <Stack alignItems="end">
             <Button
               variant="contained"
