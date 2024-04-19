@@ -25,7 +25,7 @@ const MessageField = ({ type, message, onModalOpen, feedback }) => {
 
         width: "100%",
         borderRadius: "5px",
-        p: 2,
+        p: 1,
         mb: 1,
       }}
       onMouseEnter={() => setIsHovering(true)}
