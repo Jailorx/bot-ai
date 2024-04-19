@@ -21,6 +21,15 @@ const Chat = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [feedback, setFeedback] = useState("");
 
+  const handlePresetStatements = (event) => {
+    console.log("in preset commands");
+    const target = event.target;
+    if (target.tagName === "H6") {
+      const text = target.innerText;
+      setMessage(text);
+    }
+  };
+
   const handleOpenModal = () => {
     setIsModalOpen(true);
   };
@@ -134,6 +143,7 @@ const Chat = () => {
             my={5}
             justifyContent="center"
             alignItems="center"
+            onClick={handlePresetStatements}
           >
             <Grid
               item
@@ -145,9 +155,7 @@ const Chat = () => {
             >
               <Stack spacing={1}>
                 <Typography variant="h6">Hi, how is the weather</Typography>
-                <Typography variant="subtitle1">
-                  Get immediate AI generated response
-                </Typography>
+                <Typography>Get immediate AI generated response</Typography>
               </Stack>
             </Grid>
             <Grid
@@ -160,9 +168,7 @@ const Chat = () => {
             >
               <Stack spacing={1}>
                 <Typography variant="h6">Hi, what is my location</Typography>
-                <Typography variant="subtitle1">
-                  Get immediate AI generated response
-                </Typography>
+                <Typography>Get immediate AI generated response</Typography>
               </Stack>
             </Grid>
             <Grid
@@ -177,9 +183,7 @@ const Chat = () => {
                 <Typography variant="h6">
                   Hi, what is the temperature
                 </Typography>
-                <Typography variant="subtitle1">
-                  Get immediate AI generated response
-                </Typography>
+                <Typography>Get immediate AI generated response</Typography>
               </Stack>
             </Grid>
             <Grid
@@ -192,9 +196,7 @@ const Chat = () => {
             >
               <Stack spacing={1}>
                 <Typography variant="h6">Hi, how are you</Typography>
-                <Typography variant="subtitle1">
-                  Get immediate AI generated response
-                </Typography>
+                <Typography>Get immediate AI generated response</Typography>
               </Stack>
             </Grid>
           </Grid>
