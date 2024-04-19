@@ -61,6 +61,11 @@ const Chat = () => {
     console.log(allMessages);
   };
 
+  const saveConversation = () => {
+    localStorage.setItem("chat", JSON.stringify(allMessages));
+    setAllMessages([]);
+  };
+
   const handleKeyPress = useCallback(
     (event) => {
       if (event.key === "Enter") {
@@ -240,6 +245,7 @@ const Chat = () => {
                   minWidth: "74px",
                   height: "50px",
                 }}
+                onClick={saveConversation}
               >
                 Save
               </Button>
