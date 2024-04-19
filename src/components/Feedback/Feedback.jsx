@@ -12,11 +12,11 @@ import FeedbackImage from "../../assets/images/feedback-image.png";
 
 const Feedback = ({ open, onClose }) => {
   const [feedback, setFeedback] = useState("");
-
-  const handleFeedbackForm = (event) => {
+  const handleFeedback = (event) => {
     const msg = event.target.value;
     setFeedback(msg);
   };
+
   return (
     <Modal open={open} onClose={onClose}>
       <Box
@@ -66,13 +66,13 @@ const Feedback = ({ open, onClose }) => {
             multiline
             minRows={5}
             value={feedback}
-            onChange={handleFeedbackForm}
+            onChange={handleFeedback}
           ></TextField>
           <Stack alignItems="end">
             <Button
               variant="contained"
               sx={{ maxWidth: "150px" }}
-              onClick={onClose}
+              onClick={() => onClose(feedback)}
             >
               Submit
             </Button>

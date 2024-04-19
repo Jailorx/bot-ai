@@ -19,11 +19,13 @@ const Chat = () => {
   const [allMessages, setAllMessages] = useState([]);
   const messagesEndRef = useRef(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [feedback, setFeedback] = useState("");
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
   };
-  const handleCloseModal = () => {
+  const handleCloseModal = (feedback) => {
+    setFeedback(feedback);
     setIsModalOpen(false);
   };
 
@@ -98,6 +100,7 @@ const Chat = () => {
                 type={message.type}
                 message={message.content}
                 onModalOpen={handleOpenModal}
+                feedback={feedback}
               />
               {message.type === "bot" && (
                 <Feedback open={isModalOpen} onClose={handleCloseModal} />
