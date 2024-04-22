@@ -14,8 +14,9 @@ const Sidebar = ({ showHistory }) => {
         size="large"
         edge="start"
         onClick={() => setIsSidebarOpen(true)}
+        sx={{ color: (theme) => theme.palette.primary.main }}
       >
-        <ArrowForwardIosIcon color="#9785BA" />
+        <ArrowForwardIosIcon />
       </IconButton>
       <Drawer
         achor="left"

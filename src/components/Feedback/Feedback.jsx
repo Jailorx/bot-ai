@@ -23,7 +23,6 @@ const Feedback = ({ open, onClose }) => {
         sx={{
           minHeight: "100vh",
           width: "100%",
-          // backgroundColor: rgba(249, 250, 250, 0.5),
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
