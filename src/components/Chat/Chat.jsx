@@ -14,6 +14,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import Feedback from "../Feedback/Feedback";
+import { useResponsive } from "../../context/ResponsiveContext";
 
 const API_KEY = import.meta.env.VITE_AI_API_KEY;
 const genAI = new GoogleGenerativeAI(API_KEY);
@@ -28,7 +29,7 @@ const Chat = () => {
   const messagesEndRef = useRef(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [feedback, setFeedback] = useState("");
-  const isSmallScreens = useMediaQuery("(max-width:600px)");
+  const isSmallScreens = useResponsive();
 
   const handlePresetStatements = (event) => {
     const target = event.target;

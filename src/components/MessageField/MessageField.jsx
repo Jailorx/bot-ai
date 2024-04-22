@@ -9,7 +9,7 @@ import { useState } from "react";
 const MessageField = ({ type, message, onModalOpen, feedback }) => {
   const [showRating, setShowRating] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
-  const isSmallScreens = useMediaQuery("(max-width:600px)");
+  const isSmallScreens = useResponsive();
 
   const getCurrentTime = () => {
     const curr = new Date();
