@@ -16,7 +16,6 @@ const MessageField = ({ type, message, onModalOpen, feedback }) => {
       direction="row"
       justifyContent="flex-start"
       alignItems="center"
-      spacing={2}
       sx={{
         bgcolor: (theme) =>
           type === "user"
@@ -27,6 +26,8 @@ const MessageField = ({ type, message, onModalOpen, feedback }) => {
         borderRadius: "5px",
         p: 1,
         mb: 1,
+        rowGap: 2,
+        columnGap: 2,
       }}
       onMouseEnter={() => setIsHovering(true)}
       onMouseLeave={() => setIsHovering(false)}

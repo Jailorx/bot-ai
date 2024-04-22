@@ -159,7 +159,7 @@ const Chat = () => {
 
           <Grid
             container
-            sx={{ rowGap: 2, columnGap: 1 }}
+            sx={{ rowGap: 1, columnGap: 2 }}
             my={5}
             justifyContent="center"
             alignItems="center"
