@@ -10,6 +10,19 @@ const MessageField = ({ type, message, onModalOpen, feedback }) => {
   const [showRating, setShowRating] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
 
+  const getCurrentTime = () => {
+    const curr = new Date();
+
+    const hours = addZero(curr.getHours());
+    const mins = addZero(curr.getMinutes());
+
+    return `${hours}:${mins}`;
+  };
+
+  const addZero = (n) => {
+    return n < 10 ? `0${n}` : n;
+  };
+
   return (
     <Grid
       container
@@ -46,14 +59,15 @@ const MessageField = ({ type, message, onModalOpen, feedback }) => {
           <Typography variant="subtitle1">{message}</Typography>
           {type == "user" ? (
             <Typography variant="subtitle2" color="rgba(0, 0, 0, 0.62)">
-              10:02 PM
+              {getCurrentTime()}
             </Typography>
           ) : (
             <Grid container alignItems="center" spacing={2}>
               <Grid item>
-                <Typography variant="subtitle2" color="rgba(0, 0, 0, 0.62)">
-                  10:02 PM
-                </Typography>
+                <Typography
+                  variant="subtitle2"
+                  color="rgba(0, 0, 0, 0.62)"
+                ></Typography>
               </Grid>
               <Grid item>
                 <ThumbUpOffAltOutlinedIcon
