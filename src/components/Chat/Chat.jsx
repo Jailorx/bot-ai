@@ -204,12 +204,12 @@ const Chat = () => {
       )}
       <Grid
         container
-        direction="row"
-        spacing={1}
+        sx={{ columnGap: 2 }}
+        justifyContent="center"
         alignItems="center"
-        sx={{ marginTop: "10px" }}
+        flexWrap="noWrap"
       >
-        <Grid item sx={{ marginTop: "10px", marginRight: "1" }}>
+        <Grid item xs={12} md={6}>
           <TextField
             type="text"
             multiline
@@ -224,35 +224,33 @@ const Chat = () => {
             onKeyPress={handleKeyPress}
           />
         </Grid>
-        <Grid item xs={12} sm={4}>
-          <Grid container justifyContent="flex-end" spacing={1}>
-            <Grid item>
-              <Button
-                sx={{
-                  backgroundColor: "secondary.main",
-                  color: "#000",
-                  minWidth: "74px",
-                  height: "50px",
-                }}
-                onClick={sendMessage}
-              >
-                Ask
-              </Button>
-            </Grid>
-            <Grid item>
-              <Button
-                sx={{
-                  backgroundColor: "secondary.main",
-                  color: "#000",
-                  minWidth: "74px",
-                  height: "50px",
-                }}
-                onClick={saveConversation}
-              >
-                Save
-              </Button>
-            </Grid>
-          </Grid>
+        <Grid item>
+          <Button
+            fullWidth
+            sx={{
+              backgroundColor: "secondary.main",
+              color: "#000",
+              minWidth: "74px",
+              height: "50px",
+            }}
+            onClick={sendMessage}
+          >
+            Ask
+          </Button>
+        </Grid>
+        <Grid>
+          <Button
+            fullWidth
+            sx={{
+              backgroundColor: "secondary.main",
+              color: "#000",
+              minWidth: "74px",
+              height: "50px",
+            }}
+            onClick={saveConversation}
+          >
+            Save
+          </Button>
         </Grid>
       </Grid>
     </Box>

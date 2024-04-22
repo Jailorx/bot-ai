@@ -2,10 +2,12 @@ import "./App.css";
 import { Box, Stack } from "@mui/material";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Chat from "./components/Chat/Chat";
-import Feedback from "./components/Feedback/Feedback";
 import History from "./components/History/History";
+import { useState } from "react";
 
 function App() {
+  const [showHistory, setShowHistory] = useState(false);
+
   return (
     <Box
       sx={{
@@ -17,9 +19,8 @@ function App() {
       }}
     >
       <Stack spacing={2} direction="row">
-        <Sidebar />
-        {/* <Chat /> */}
-        <History />
+        <Sidebar showHistory={setShowHistory} />
+        {showHistory ? <History /> : <Chat />}
       </Stack>
     </Box>
   );

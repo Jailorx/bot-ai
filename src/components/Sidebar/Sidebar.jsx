@@ -3,7 +3,7 @@ import Avatar from "@mui/material/Avatar";
 import NewChatImage from "../../assets/images/new-chat-image.png";
 import BotAiImage from "../../assets/images/bot-ai-image.png";
 
-const Sidebar = () => {
+const Sidebar = ({ showHistory }) => {
   return (
     <Stack
       spacing={2}
@@ -21,6 +21,7 @@ const Sidebar = () => {
           backgroundColor: "#D7C7F4",
           color: "#000",
         }}
+        onClick={() => showHistory(false)}
       >
         <Avatar
           src={BotAiImage}
@@ -38,8 +39,9 @@ const Sidebar = () => {
           fontWeight: "700",
           color: "#414146",
         }}
+        onClick={() => showHistory(true)}
       >
-        Past Conversations
+        Saved Conversations
       </Button>
     </Stack>
   );
