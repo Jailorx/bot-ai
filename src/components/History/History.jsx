@@ -14,6 +14,7 @@ const History = () => {
     <Box
       sx={{
         width: "100%",
+        minHeight: "100vh",
         borderRadius: "5px",
         p: 1,
         mb: 1,

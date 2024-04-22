@@ -209,13 +209,13 @@ const Chat = () => {
         alignItems="center"
         flexWrap="noWrap"
       >
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} md={5}>
           <TextField
             type="text"
             multiline
             placeholder="Message BOT AI"
             sx={{
-              width: "50vw",
+              minWidth: "40vw",
               border: "1px solid #00000073",
               borderRadius: "5px",
             }}
@@ -238,7 +238,7 @@ const Chat = () => {
             Ask
           </Button>
         </Grid>
-        <Grid>
+        <Grid item>
           <Button
             fullWidth
             sx={{

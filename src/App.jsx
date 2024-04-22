@@ -7,7 +7,6 @@ import { useState } from "react";
 
 function App() {
   const [showHistory, setShowHistory] = useState(false);
-
   return (
     <Box
       sx={{
