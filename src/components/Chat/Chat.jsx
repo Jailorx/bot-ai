@@ -116,9 +116,8 @@ const Chat = () => {
       {allMessages.length > 0 ? (
         <Stack spacing={1} sx={{ maxHeight: "80vh", overflowY: "scroll" }}>
           {allMessages.map((message, index) => (
-            <>
+            <Box key={index}>
               <MessageField
-                key={index}
                 type={message.type}
                 message={message.content}
                 onModalOpen={handleOpenModal}
@@ -127,7 +126,7 @@ const Chat = () => {
               {message.type === "bot" && (
                 <Feedback open={isModalOpen} onClose={handleCloseModal} />
               )}
-            </>
+            </Box>
           ))}
           <div ref={messagesEndRef} />
         </Stack>
@@ -174,8 +173,12 @@ const Chat = () => {
               sx={{ borderRadius: "5px" }}
             >
               <Stack spacing={1}>
-                <Typography variant="h6">Hi, how is the weather</Typography>
-                <Typography>Get immediate AI generated response</Typography>
+                <Typography variant={isSmallScreens ? "subtitle1" : "h6"}>
+                  Hi, how is the weather
+                </Typography>
+                <Typography variant={isSmallScreens ? "subtitle2" : ""}>
+                  Get immediate AI generated response
+                </Typography>
               </Stack>
             </Grid>
             <Grid
@@ -187,8 +190,12 @@ const Chat = () => {
               sx={{ borderRadius: "5px" }}
             >
               <Stack spacing={1}>
-                <Typography variant="h6">Hi, what is my location</Typography>
-                <Typography>Get immediate AI generated response</Typography>
+                <Typography variant={isSmallScreens ? "subtitle1" : "h6"}>
+                  Hi, what is my location
+                </Typography>
+                <Typography variant={isSmallScreens ? "subtitle2" : ""}>
+                  Get immediate AI generated response
+                </Typography>
               </Stack>
             </Grid>
             <Grid
@@ -200,10 +207,12 @@ const Chat = () => {
               sx={{ borderRadius: "5px" }}
             >
               <Stack spacing={1}>
-                <Typography variant="h6">
+                <Typography variant={isSmallScreens ? "subtitle1" : "h6"}>
                   Hi, what is the temperature
                 </Typography>
-                <Typography>Get immediate AI generated response</Typography>
+                <Typography variant={isSmallScreens ? "subtitle2" : ""}>
+                  Get immediate AI generated response
+                </Typography>
               </Stack>
             </Grid>
             <Grid
@@ -215,8 +224,12 @@ const Chat = () => {
               sx={{ borderRadius: "5px" }}
             >
               <Stack spacing={1}>
-                <Typography variant="h6">Hi, how are you</Typography>
-                <Typography>Get immediate AI generated response</Typography>
+                <Typography variant={isSmallScreens ? "subtitle1" : "h6"}>
+                  Hi, how are you
+                </Typography>
+                <Typography variant={isSmallScreens ? "subtitle2" : ""}>
+                  Get immediate AI generated response
+                </Typography>
               </Stack>
             </Grid>
           </Grid>

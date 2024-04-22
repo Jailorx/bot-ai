@@ -1,4 +1,4 @@
-import { Grid, Typography, Rating } from "@mui/material";
+import { Grid, Typography, Rating, useMediaQuery } from "@mui/material";
 import UserProfile from "../../assets/images/user-image.png";
 import AIProfile from "../../assets/images/bot-ai-image-profile.png";
 import Avatar from "@mui/material/Avatar";
@@ -9,6 +9,7 @@ import { useState } from "react";
 const MessageField = ({ type, message, onModalOpen, feedback }) => {
   const [showRating, setShowRating] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
+  const isSmallScreens = useMediaQuery("(max-width:600px)");
 
   const getCurrentTime = () => {
     const curr = new Date();
@@ -48,15 +49,20 @@ const MessageField = ({ type, message, onModalOpen, feedback }) => {
       <Grid item>
         <Avatar
           src={type === "user" ? UserProfile : AIProfile}
-          sx={{ width: "66px", height: "69px" }}
+          sx={{
+            width: isSmallScreens ? "40px" : "66px",
+            height: isSmallScreens ? "40px" : "69px",
+          }}
         />
       </Grid>
       <Grid item xs={8}>
         <Grid container direction="column">
-          <Typography variant="h6">
+          <Typography variant={isSmallScreens ? "subtitle1" : "h6"}>
             {type === "user" ? "You" : "AIBOT"}
           </Typography>
-          <Typography variant="subtitle1">{message}</Typography>
+          <Typography variant={isSmallScreens ? "subtitle2" : "subtitle1"}>
+            {message}
+          </Typography>
           {type == "user" ? (
             <Typography variant="subtitle2" color="rgba(0, 0, 0, 0.62)">
               {getCurrentTime()}
