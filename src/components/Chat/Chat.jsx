@@ -16,12 +16,12 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import Feedback from "../Feedback/Feedback";
 import { useResponsive } from "../../context/ResponsiveContext";
 
-const API_KEY = import.meta.env.VITE_AI_API_KEY;
+const API_KEY = "AIzaSyDLnXQCyPD_jz1KtFUENWp7ZLT7VDg1Tf4";
 const genAI = new GoogleGenerativeAI(API_KEY);
 
 const Chat = () => {
   const model = genAI.getGenerativeModel({
-    model: import.meta.env.VITE_AI_MODEL,
+    model: "gemini-pro",
   });
 
   const [message, setMessage] = useState("");
