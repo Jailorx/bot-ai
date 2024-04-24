@@ -5,6 +5,7 @@ import Avatar from "@mui/material/Avatar";
 import ThumbUpOffAltOutlinedIcon from "@mui/icons-material/ThumbUpOffAltOutlined";
 import ThumbDownOffAltOutlinedIcon from "@mui/icons-material/ThumbDownOffAltOutlined";
 import { useState } from "react";
+import { useResponsive } from "../../context/ResponsiveContext";
 
 const MessageField = ({ type, message, onModalOpen, feedback }) => {
   const [showRating, setShowRating] = useState(false);
